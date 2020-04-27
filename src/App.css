@@ -15,11 +15,19 @@
   border-radius: 20px;
   display: flex;
   flex-direction: row;
+  box-shadow: 1px 0 3px rgba(0,0,0,0.2);
 
 }
 
 .content_wrapper {
-  padding-top: 25px;
   width: 1025px;
+  background-color: rgb(222, 222, 245);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
+
+.wrap {
+  position: relative;
+}
+
 

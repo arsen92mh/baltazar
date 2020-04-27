@@ -1,0 +1,7 @@
+.wrapper {
+    margin: 0 auto;
+    top: 50% ;
+    width: 95%;
+    min-height: 300px;
+    background-color: green;
+}

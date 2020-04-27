@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Nav from './Nav/Nav';
-import { Route, BrowserRouter, NavLink } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import Cl from './Content/CL/Cl';
 import Il from './Content/IL/Il';
 import Sl from './Content/SL/Sl';
@@ -17,24 +16,27 @@ import Contentpicture from './Content/Contentpicture/Contentpicture';
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-      <div className="App_wrapper">
-        <Nav/>
-        <div className="content_wrapper">
-          <Header/>
-          <Contentpicture/>
-          <div className="main_content">
-          <Route path="/cl" component={Cl}/>
-          <Route path="/sl" component={Sl}/>
-          <Route path="/il" component={Il}/>
-          <Route path="/cc" component={Cc}/>
-          <Route path="/mpl" component={Mpl}/>
-          <Route path="/common" component={Common}/>
-          <Route path="/docs" component={Docs}/>
+      <div className="App">
+        <div className="App_wrapper">
+          <Nav />
+          <div className="content_wrapper">
+            <Header />
+
+            
+              <Contentpicture />
+              <div className="main_content">
+                <Route path="/cl" component={Cl} />
+                <Route path="/sl" component={Sl} />
+                <Route path="/il" component={Il} />
+                <Route path="/cc" component={Cc} />
+                <Route path="/mpl" component={Mpl} />
+                <Route path="/common" component={Common} />
+                <Route path="/docs" component={Docs} />
+              </div>
+            
           </div>
         </div>
       </div>
-    </div>
     </BrowserRouter>
   );
 }
