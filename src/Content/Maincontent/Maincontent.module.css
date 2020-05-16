@@ -1,0 +1,29 @@
+.wrapper {
+    width: 100%;
+    min-height: 300px;
+    background-color: green;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 10px;
+    background-color: white;
+}
+
+.header a {
+    font-size: 15px;
+    text-decoration: none;
+    margin: 5px 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.header a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

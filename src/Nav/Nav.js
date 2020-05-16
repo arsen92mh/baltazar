@@ -4,11 +4,14 @@ import Logo from './Logo/Logo';
 import Links from './Links/Links';
 
 
-const Nav = () => {
+const Nav = (props) => {
+
+    
+
     return(
         <div className={style.wrapper}>
             <Logo/>
-            <Links/>
+            <Links linkData={props.linkData}/>
         </div>
     );
 }

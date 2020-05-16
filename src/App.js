@@ -2,45 +2,29 @@ import React from 'react';
 import './App.css';
 import Nav from './Nav/Nav';
 import { Route, BrowserRouter } from 'react-router-dom';
-import Cl from './Content/CL/Cl';
-import Il from './Content/IL/Il';
-import Sl from './Content/SL/Sl';
-import Cc from "./Content/CC/Cc";
-import Mpl from "./Content/MPL/Mpl";
-import Common from "./Content/Common/Common";
-import Docs from "./Content/Documents/Docs";
 import Header from './Content/Header/Header';
 import Contentpicture from './Content/Contentpicture/Contentpicture';
+import Maincontent from './Content/Maincontent/Maincontent';
 
 
 
-function App() {
+
+function App(props) {
+
   return (
     <BrowserRouter>
       <div className="App">
         <div className="App_wrapper">
-          <Nav />
+          <Nav linkData={props.linkData} />
           <div className="content_wrapper">
             <Header />
-
-
             <Contentpicture />
-            <div className="main_content">
-
-
-              <Route path="/cl" component={Cl} />
-              <Route path="/sl" component={Sl} />
-              <Route path="/il" component={Il} />
-              <Route path="/cc" component={Cc} />
-              <Route path="/mpl" component={Mpl} />
-              <Route path="/common" component={Common} />
-              <Route path="/docs" component={Docs} />
-            </div>
-
+            <Maincontent routeData={props.routeData} clLinksData={props.clLinksData} slLinksData={props.slLinksData} ilLinksData={props.ilLinksData} cclLinksData={props.cclLinksData} mplLinksData={props.mplLinksData} commonLinksData={props.commonLinksData} docsLinksData={props.docsLinksData}/>
           </div>
         </div>
       </div>
     </BrowserRouter>
+    
   );
 }
 
