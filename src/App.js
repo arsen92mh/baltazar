@@ -13,6 +13,7 @@ import Header from './Content/Header/Header';
 import Contentpicture from './Content/Contentpicture/Contentpicture';
 
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -22,18 +23,20 @@ function App() {
           <div className="content_wrapper">
             <Header />
 
-            
-              <Contentpicture />
-              <div className="main_content">
-                <Route path="/cl" component={Cl} />
-                <Route path="/sl" component={Sl} />
-                <Route path="/il" component={Il} />
-                <Route path="/cc" component={Cc} />
-                <Route path="/mpl" component={Mpl} />
-                <Route path="/common" component={Common} />
-                <Route path="/docs" component={Docs} />
-              </div>
-            
+
+            <Contentpicture />
+            <div className="main_content">
+
+
+              <Route path="/cl" component={Cl} />
+              <Route path="/sl" component={Sl} />
+              <Route path="/il" component={Il} />
+              <Route path="/cc" component={Cc} />
+              <Route path="/mpl" component={Mpl} />
+              <Route path="/common" component={Common} />
+              <Route path="/docs" component={Docs} />
+            </div>
+
           </div>
         </div>
       </div>
