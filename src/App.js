@@ -15,11 +15,11 @@ function App(props) {
     <BrowserRouter>
       <div className="App">
         <div className="App_wrapper">
-          <Nav linkData={props.linkData} />
+          <Nav linkData={props.state.linkData} />
           <div className="content_wrapper">
             <Header />
             <Contentpicture />
-            <Maincontent routeData={props.routeData} clLinksData={props.clLinksData} slLinksData={props.slLinksData} ilLinksData={props.ilLinksData} cclLinksData={props.cclLinksData} mplLinksData={props.mplLinksData} commonLinksData={props.commonLinksData} docsLinksData={props.docsLinksData}/>
+            <Maincontent state={props.state}/>
           </div>
         </div>
       </div>
