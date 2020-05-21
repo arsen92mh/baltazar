@@ -53,7 +53,44 @@ let state = {
                 { childId: 2, childPath: "/docs/docs2", childName: "docs2" }
             ]
         }
+    ],
+    postData: [
+        {
+            postid: 1,
+            question: "В заявке не указаны модель/год выпуска авто. Тип диллера – Официальный.",
+            answer: "Возвращать заявку по этой причине можно только если она полностью рассмотрена, и вы собираетесь ее одобрить",
+            postAuthor: "Пупкина Залупкина",
+            postTime: "14:10",
+            postDate: "14.05.2020",
+            hasComments: true,
+            commentData: {
+                commId: 1,
+                commText: "почему?",
+                commTime: "12:30",
+                commDate: "20.05.2020",
+                likesCount: 1
+            }
+
+        },
+        {
+            postid: 2,
+            question: "222222",
+            answer: "22а2222222",
+            postAuthor: "222222",
+            postTime: "14:10",
+            postDate: "14.05.2020",
+            hasComments: true,
+            commentData: {
+                commId: 1,
+                commText: "почему?",
+                commTime: "12:30",
+                commDate: "20.05.2020",
+                likesCount: 1
+            }
+
+        }
     ]
+
 }
 
 export default state;
