@@ -15,6 +15,20 @@ const Maincontent = (props) => {
 
     let postArr = props.state.postData.map(p => <Post postData={p} />)
 
+    let newQuestionArea = React.createRef();
+    let newAnswerArea = React.createRef();
+    let newAuthor = React.createRef();
+
+
+    function addPost () {
+        let askQuestion = newQuestionArea.current.value;
+        let getAnswer = newAnswerArea.current.value;
+        let getAuthor = newAuthor.current.value;
+
+        
+
+    }
+
     return (
         <div className={style.wrapper}>
             <div className={style.header}>
@@ -25,7 +39,18 @@ const Maincontent = (props) => {
 
             <div className={style.content}>
 
-                <button>Add post</button>
+                <button onClick={addPost} >Add post</button>
+                <div className="postModal">
+                    <div className="queationBox">
+                        <textarea ref={newQuestionArea} className="questionArea" placeholder="Enter your question"></textarea>
+                    </div>
+                    <div className="answerBox" >
+                        <textarea ref={newAnswerArea} className="answerArea" placeholder="Enter your answer"></textarea>
+                    </div>
+                    <div className="authorBox">
+                        <textarea ref={newAuthor} className="authorArea" placeholder="Enter your name"></textarea>
+                    </div>
+                </div>
 
                 {postArr}
 
