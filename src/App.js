@@ -21,7 +21,7 @@ function App(props) {
           <div className="content_wrapper">
             <Header />
             <Contentpicture />
-            <Maincontent state={props.state} />
+            <Maincontent state={props.state} addPost={props.addPost}/>
           </div>
         </div>
       </div>

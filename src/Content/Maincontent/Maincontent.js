@@ -13,21 +13,23 @@ const Maincontent = (props) => {
                 (n) => { return <NavLink to={n.childPath}>{n.childName}</NavLink> })}</Route>
         });
 
-    let postArr = props.state.postData.map(p => <Post postData={p} />)
+    let postArr = props.state.postData.map(p => <Post postData={p} commentData={p.commentData} />)
+
 
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
     let newAuthor = React.createRef();
 
+    let addpost = () => {
 
-    function addPost () {
-        let askQuestion = newQuestionArea.current.value;
-        let getAnswer = newAnswerArea.current.value;
-        let getAuthor = newAuthor.current.value;
+        let questText = newQuestionArea.current.value;
+        let ansText = newAnswerArea.current.value;
+        let authText = newAuthor.current.value;
 
-        
+        props.addPost(questText, ansText, authText);
 
     }
+
 
     return (
         <div className={style.wrapper}>
@@ -39,7 +41,7 @@ const Maincontent = (props) => {
 
             <div className={style.content}>
 
-                <button onClick={addPost} >Add post</button>
+                <button onClick={addpost} >Add post</button>
                 <div className="postModal">
                     <div className="queationBox">
                         <textarea ref={newQuestionArea} className="questionArea" placeholder="Enter your question"></textarea>
@@ -58,6 +60,5 @@ const Maincontent = (props) => {
         </div>
     );
 }
-
 
 export default Maincontent;

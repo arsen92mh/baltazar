@@ -1,3 +1,5 @@
+import rerenderWholeDom from "./../rerender.js";
+
 let state = {
     linkData: [
         {
@@ -63,34 +65,37 @@ let state = {
             postTime: "14:10",
             postDate: "14.05.2020",
             hasComments: true,
-            commentData: {
+            commentData: [{
                 commId: 1,
                 commText: "почему?",
                 commTime: "12:30",
                 commDate: "20.05.2020",
                 likesCount: 1
             }
-
-        },
-        {
-            postid: 2,
-            question: "222222",
-            answer: "22а2222222",
-            postAuthor: "222222",
-            postTime: "14:10",
-            postDate: "14.05.2020",
-            hasComments: true,
-            commentData: {
-                commId: 1,
-                commText: "почему?",
-                commTime: "12:30",
-                commDate: "20.05.2020",
-                likesCount: 1
-            }
-
+            ]
         }
-    ]
+    ],
+}
 
+export let addPost = function (quest, ans, auth) {
+    let postWrap = {
+        postid: 0,
+        question: "",
+        answer: "5555555",
+        postAuthor: "555555",
+        postTime: "55:55",
+        postDate: "55.55.5555",
+        hasComments: false,
+        commentData: []
+    }
+    let postDataIndex = state.postData.length;
+    postWrap.postid = postDataIndex + 1;
+    postWrap.question = quest;
+    postWrap.answer = ans;
+    postWrap.postAuthor = auth;
+    state.postData.unshift(postWrap);
+    debugger;
+    rerenderWholeDom(state);
 }
 
 export default state;

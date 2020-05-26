@@ -5,16 +5,20 @@ import Qa from "./Qa/Qa.js";
 
 const Post = (props) => {
 
+    let commentArr = props.commentData.map( c => <Comment commentData={c}/> );
+
     return (
         <div className={style.post}>
 
             <div className={style.qawrapper}>
+
                 <Qa postData={props.postData}/>
+                
             </div>
 
             <div className={style.commentArea}>
 
-                <Comment commentData={props.postData.commentData}/>
+                { commentArr }
 
             </div>
 
