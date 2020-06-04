@@ -7,6 +7,7 @@ import Post from "./Post/Post";
 
 const Maincontent = (props) => {
 
+
     let routeOfLinks = props.state.linkData.map(
         (r) => {
             return <Route path={r.path}>{r.subLinks.map(
@@ -18,16 +19,17 @@ const Maincontent = (props) => {
 
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
-    let newAuthor = React.createRef();
 
     let addpost = () => {
+        props.addPost();
+    }
 
+    let newPostText = () => {
         let questText = newQuestionArea.current.value;
         let ansText = newAnswerArea.current.value;
-        let authText = newAuthor.current.value;
-
-        props.addPost(questText, ansText, authText);
-
+        props.newPostQuestionFunc(questText, ansText);
+        debugger;
+        
     }
 
 
@@ -41,16 +43,13 @@ const Maincontent = (props) => {
 
             <div className={style.content}>
 
-                <button onClick={addpost} >Add post</button>
+                <button onClick={addpost}>Add post</button>
                 <div className="postModal">
                     <div className="queationBox">
-                        <textarea ref={newQuestionArea} className="questionArea" placeholder="Enter your question"></textarea>
+                        <textarea onChange={newPostText} value={props.state.newPostQuestion} ref={newQuestionArea} className="questionArea" placeholder="Enter your question"></textarea>
                     </div>
                     <div className="answerBox" >
-                        <textarea ref={newAnswerArea} className="answerArea" placeholder="Enter your answer"></textarea>
-                    </div>
-                    <div className="authorBox">
-                        <textarea ref={newAuthor} className="authorArea" placeholder="Enter your name"></textarea>
+                        <textarea onChange={newPostText}  ref={newAnswerArea} className="answerArea" placeholder="Enter your answer"></textarea>
                     </div>
                 </div>
 
