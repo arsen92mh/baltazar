@@ -81,21 +81,41 @@ export let addPost = function (quest, ans, auth) {
     let postWrap = {
         postid: 0,
         question: "",
-        answer: "5555555",
-        postAuthor: "555555",
-        postTime: "55:55",
-        postDate: "55.55.5555",
+        answer: "",
+        postAuthor: "",
+        postTime: "",
+        postDate: "",
         hasComments: false,
         commentData: []
     }
     let postDataIndex = state.postData.length;
+    let newPostDate = new Date();
+    let newPostYear = newPostDate.getFullYear();
+    let newPostMonth = newPostDate.getMonth() +1;
+    let newPostDay = newPostDate.getDate();
+    let newPostHour = newPostDate.getHours();
+    let newPostMinute = newPostDate.getMinutes();
+    let addZero = (num) => {
+        if (num <=9) {
+            return "0"+num;
+        } else {
+            return num;
+        }
+    }
     postWrap.postid = postDataIndex + 1;
     postWrap.question = quest;
     postWrap.answer = ans;
     postWrap.postAuthor = auth;
+    postWrap.postDate = `${addZero(newPostDay)}.${addZero(newPostMonth)}.${newPostYear}`;
+    postWrap.postTime = `${addZero(newPostHour)}:${addZero(newPostMinute)}`;
+    
+    
     state.postData.unshift(postWrap);
-    debugger;
+
+    
+    
     rerenderWholeDom(state);
+    debugger;
 }
 
 export default state;
