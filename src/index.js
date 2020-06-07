@@ -7,7 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
-let rerenderWholeDom = (store) => {
+let rerenderWholeDom = () => {
 
   ReactDOM.render(
 
@@ -20,7 +20,7 @@ let rerenderWholeDom = (store) => {
 
 }
 
-rerenderWholeDom(store);
+rerenderWholeDom(store.getState());
   
 store.subscribe(rerenderWholeDom);
 

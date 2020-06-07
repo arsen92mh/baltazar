@@ -8,27 +8,28 @@ import Post from "./Post/Post";
 const Maincontent = (props) => {
 
 
-    let routeOfLinks = props.store.state.linkData.map(
+    let routeOfLinks = props.state.linkData.map(
         (r) => {
             return <Route path={r.path}>{r.subLinks.map(
                 (n) => { return <NavLink to={n.childPath}>{n.childName}</NavLink> })}</Route>
         });
 
-    let postArr = props.store.state.postData.map(p => <Post postData={p} commentData={p.commentData} />)
+    let postArr = props.state.postData.map(p => <Post postData={p} commentData={p.commentData} />)
 
 
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
 
     let addpost = () => {
-        props.store.addPost();
+        props.addPost();
 
     }
 
     let newPostText = () => {
+        debugger;
         let questText = newQuestionArea.current.value;
         let ansText = newAnswerArea.current.value;
-        props.store.newPostQuestionFunc(questText, ansText);
+        props.newPostQuestionFunc(questText, ansText);
 
     }
 
@@ -46,10 +47,10 @@ const Maincontent = (props) => {
                 <button onClick={addpost}>Add post</button>
                 <div className="postModal">
                     <div className="queationBox">
-                        <textarea onChange={newPostText} value={props.store.state.newPostData.newPostQuestion} ref={newQuestionArea} className="questionArea" placeholder="Enter your question"></textarea>
+                        <textarea onChange={newPostText} value={props.state.newPostData.newPostQuestion} ref={newQuestionArea} className="questionArea" placeholder="Enter your question"></textarea>
                     </div>
                     <div className="answerBox" >
-                        <textarea onChange={newPostText} ref={newAnswerArea} className="answerArea" placeholder="Enter your answer" value={props.store.state.newPostData.newPostAnswer}></textarea>
+                        <textarea onChange={newPostText} ref={newAnswerArea} className="answerArea" placeholder="Enter your answer" value={props.state.newPostData.newPostAnswer}></textarea>
                     </div>
                 </div>
 

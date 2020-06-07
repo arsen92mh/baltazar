@@ -8,7 +8,7 @@ const Links = (props) => {
 
     
     
-    let linksArr = props.linkData.map(linkItem => <NavLink to={linkItem.path} activeClassName={style.active}>{linkItem.name}</NavLink>)
+    let linksArr = props.linkData.map(l => <NavLink to={l.path} activeClassName={style.active}>{l.name}</NavLink>)
 
 
     return (

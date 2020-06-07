@@ -1,9 +1,5 @@
-let rerenderWholeDom = () => {
-    console.log("State has been changed");
-}
-
 let store = {
-    state: {
+    _state: {
         linkData: [
             {
                 id: 1, path: "/cl", name: "CL", subLinks:
@@ -43,12 +39,19 @@ let store = {
             newPostAnswer: ""
         }
     },
-    newPostQuestionFunc: (stateQuestText, stateAnsText) => {
-        store.state.newPostData.newPostQuestion = stateQuestText;
-        store.state.newPostData.newPostAnswer = stateAnsText;
-        rerenderWholeDom(store);
+    _rerenderWholeDom () {
+        console.log("State has been changed");
     },
-    addPost: () => {
+    getState () {
+        return this._state;
+    },
+    newPostQuestionFunc (stateQuestText, stateAnsText) {
+
+        this._state.newPostData.newPostQuestion = stateQuestText;
+        this._state.newPostData.newPostAnswer = stateAnsText;
+        this._rerenderWholeDom(store);
+    },
+    addPost () {
         debugger;
         let postWrap = {
             postid: 0,
@@ -60,7 +63,7 @@ let store = {
             hasComments: false,
             commentData: []
         }
-        let postDataIndex = store.state.postData.length;
+        let postDataIndex = this._state.postData.length;
         let newPostDate = new Date();
         let newPostYear = newPostDate.getFullYear();
         let newPostMonth = newPostDate.getMonth() +1;
@@ -75,23 +78,24 @@ let store = {
             }
         }
         postWrap.postid = postDataIndex + 1;
-        postWrap.question = store.state.newPostData.newPostQuestion;
-        postWrap.answer = store.state.newPostData.newPostAnswer;
+        postWrap.question = this._state.newPostData.newPostQuestion;
+        postWrap.answer = this._state.newPostData.newPostAnswer;
         postWrap.postDate = `${addZero(newPostDay)}.${addZero(newPostMonth)}.${newPostYear}`;
         postWrap.postTime = `${addZero(newPostHour)}:${addZero(newPostMinute)}`;
         
         
-        store.state.postData.unshift(postWrap);
-        store.state.newPostData.newPostQuestion = "";
-        store.state.newPostData.newPostAnswer = "";
+        this._state.postData.unshift(postWrap);
+        this._state.newPostData.newPostQuestion = "";
+        this._state.newPostData.newPostAnswer = "";
         
-        rerenderWholeDom(store);
+        this._rerenderWholeDom(store);
     },
-    subscribe: (observer) => {
-        rerenderWholeDom = observer;
+    subscribe (observer) {
+        this._rerenderWholeDom = observer;
     }
 
 }
 
 
 export default store;
+window.store = store;
