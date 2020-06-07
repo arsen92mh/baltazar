@@ -11,16 +11,15 @@ import Maincontent from './Content/Maincontent/Maincontent';
 
 function App(props) {
 
-
   return (
     <BrowserRouter>
       <div className="App">
         <div className="App_wrapper">
-          <Nav linkData={props.state.linkData} />
+          <Nav linkData={props.store.state.linkData} />
           <div className="content_wrapper">
             <Header />
             <Contentpicture />
-            <Maincontent state={props.state} addPost={props.addPost} newPostQuestionFunc={props.newPostQuestionFunc}/>
+            <Maincontent store={props.store}/>
           </div>
         </div>
       </div>
