@@ -51,6 +51,24 @@ let store = {
     getState() {
         return this._state;
     },
+    dateCreator() {
+        let addZero = (num) => {
+            if (num <= 9) {
+                return "0" + num;
+            } else {
+                return num;
+            }
+        }
+        let newPostDate = new Date();
+        return {
+            year: addZero(newPostDate.getFullYear()),
+            month: addZero(newPostDate.getMonth() + 1),
+            day: addZero(newPostDate.getDate()),
+            hour: addZero(newPostDate.getHours()),
+            minute: addZero(newPostDate.getMinutes()),
+            second: addZero(newPostDate.getSeconds())
+        }
+    },
     dispatch(action) {
         if (action.type === ADD_POST) {
             let postWrap = {
@@ -64,24 +82,12 @@ let store = {
                 commentData: []
             }
             let postDataIndex = this._state.postData.length;
-            let newPostDate = new Date();
-            let newPostYear = newPostDate.getFullYear();
-            let newPostMonth = newPostDate.getMonth() + 1;
-            let newPostDay = newPostDate.getDate();
-            let newPostHour = newPostDate.getHours();
-            let newPostMinute = newPostDate.getMinutes();
-            let addZero = (num) => {
-                if (num <= 9) {
-                    return "0" + num;
-                } else {
-                    return num;
-                }
-            }
+            let t = this.dateCreator();
             postWrap.postid = postDataIndex + 1;
             postWrap.question = this._state.newPostData.newPostQuestion;
             postWrap.answer = this._state.newPostData.newPostAnswer;
-            postWrap.postDate = `${addZero(newPostDay)}.${addZero(newPostMonth)}.${newPostYear}`;
-            postWrap.postTime = `${addZero(newPostHour)}:${addZero(newPostMinute)}`;
+            postWrap.postDate = `${t.day}.${t.month}.${t.year}`;
+            postWrap.postTime = `${t.hour}:${t.minute}`;
 
 
             this._state.postData.unshift(postWrap);
