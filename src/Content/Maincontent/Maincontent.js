@@ -3,10 +3,7 @@ import style from "./Maincontent.module.css";
 import { NavLink, Route } from "react-router-dom";
 import Post from "./Post/Post";
 
-
-
 const Maincontent = (props) => {
-
 
     let routeOfLinks = props.state.linkData.map(
         (r) => {
@@ -16,21 +13,17 @@ const Maincontent = (props) => {
 
     let postArr = props.state.postData.map(p => <Post postData={p} commentData={p.commentData} />)
 
-
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
 
     let addpost = () => {
-        props.addPost();
-
+        props.dispatch({ type: "ADD-POST" });
     }
 
     let newPostText = () => {
-        debugger;
         let questText = newQuestionArea.current.value;
         let ansText = newAnswerArea.current.value;
-        props.newPostQuestionFunc(questText, ansText);
-
+        props.dispatch({ type: "NEW-POST-QUESTION-FUNC", stateQuestText: questText, stateAnsText: ansText });
     }
 
 

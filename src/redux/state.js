@@ -34,64 +34,63 @@ let store = {
                 ]
             }
         ],
-        newPostData:{
-            newPostQuestion:"",
+        newPostData: {
+            newPostQuestion: "",
             newPostAnswer: ""
         }
     },
-    _rerenderWholeDom () {
+    _rerenderWholeDom() {
         console.log("State has been changed");
     },
-    getState () {
+    subscribe(observer) {
+        this._rerenderWholeDom = observer;
+    },
+    getState() {
         return this._state;
     },
-    newPostQuestionFunc (stateQuestText, stateAnsText) {
-
-        this._state.newPostData.newPostQuestion = stateQuestText;
-        this._state.newPostData.newPostAnswer = stateAnsText;
-        this._rerenderWholeDom(store);
-    },
-    addPost () {
-        debugger;
-        let postWrap = {
-            postid: 0,
-            question: "",
-            answer: "",
-            postAuthor: "",
-            postTime: "",
-            postDate: "",
-            hasComments: false,
-            commentData: []
-        }
-        let postDataIndex = this._state.postData.length;
-        let newPostDate = new Date();
-        let newPostYear = newPostDate.getFullYear();
-        let newPostMonth = newPostDate.getMonth() +1;
-        let newPostDay = newPostDate.getDate();
-        let newPostHour = newPostDate.getHours();
-        let newPostMinute = newPostDate.getMinutes();
-        let addZero = (num) => {
-            if (num <=9) {
-                return "0"+num;
-            } else {
-                return num;
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            let postWrap = {
+                postid: 0,
+                question: "",
+                answer: "",
+                postAuthor: "",
+                postTime: "",
+                postDate: "",
+                hasComments: false,
+                commentData: []
             }
+            let postDataIndex = this._state.postData.length;
+            let newPostDate = new Date();
+            let newPostYear = newPostDate.getFullYear();
+            let newPostMonth = newPostDate.getMonth() + 1;
+            let newPostDay = newPostDate.getDate();
+            let newPostHour = newPostDate.getHours();
+            let newPostMinute = newPostDate.getMinutes();
+            let addZero = (num) => {
+                if (num <= 9) {
+                    return "0" + num;
+                } else {
+                    return num;
+                }
+            }
+            postWrap.postid = postDataIndex + 1;
+            postWrap.question = this._state.newPostData.newPostQuestion;
+            postWrap.answer = this._state.newPostData.newPostAnswer;
+            postWrap.postDate = `${addZero(newPostDay)}.${addZero(newPostMonth)}.${newPostYear}`;
+            postWrap.postTime = `${addZero(newPostHour)}:${addZero(newPostMinute)}`;
+
+
+            this._state.postData.unshift(postWrap);
+            this._state.newPostData.newPostQuestion = "";
+            this._state.newPostData.newPostAnswer = "";
+
+            this._rerenderWholeDom(store.getState());
+        } else if (action.type === "NEW-POST-QUESTION-FUNC") {
+            this._state.newPostData.newPostQuestion = action.stateQuestText;
+            this._state.newPostData.newPostAnswer = action.stateAnsText;
+            this._rerenderWholeDom(store.getState());
         }
-        postWrap.postid = postDataIndex + 1;
-        postWrap.question = this._state.newPostData.newPostQuestion;
-        postWrap.answer = this._state.newPostData.newPostAnswer;
-        postWrap.postDate = `${addZero(newPostDay)}.${addZero(newPostMonth)}.${newPostYear}`;
-        postWrap.postTime = `${addZero(newPostHour)}:${addZero(newPostMinute)}`;
-        
-        
-        this._state.postData.unshift(postWrap);
-        this._state.newPostData.newPostQuestion = "";
-        this._state.newPostData.newPostAnswer = "";
-        
-        this._rerenderWholeDom(store);
-    },
-    subscribe (observer) {
-        this._rerenderWholeDom = observer;
     }
 
 }
