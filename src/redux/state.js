@@ -1,3 +1,6 @@
+const ADD_POST = "ADD-POST";
+const NEW_POST_TEXT = "NEW-POST-QUESTION-FUNC";
+
 let store = {
     _state: {
         linkData: [
@@ -49,7 +52,7 @@ let store = {
         return this._state;
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
+        if (action.type === ADD_POST) {
             let postWrap = {
                 postid: 0,
                 question: "",
@@ -86,13 +89,25 @@ let store = {
             this._state.newPostData.newPostAnswer = "";
 
             this._rerenderWholeDom(store.getState());
-        } else if (action.type === "NEW-POST-QUESTION-FUNC") {
+        } else if (action.type === NEW_POST_TEXT) {
             this._state.newPostData.newPostQuestion = action.stateQuestText;
             this._state.newPostData.newPostAnswer = action.stateAnsText;
             this._rerenderWholeDom(store.getState());
         }
     }
 
+}
+
+export const addPostActionCreator = () => {
+    return {type: ADD_POST}
+}
+
+export const newPostTextActionCreator = (a, b) => {
+    return {
+        type: NEW_POST_TEXT,
+        stateQuestText: a,
+        stateAnsText: b
+    }
 }
 
 

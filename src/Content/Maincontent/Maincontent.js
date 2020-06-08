@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Maincontent.module.css";
 import { NavLink, Route } from "react-router-dom";
 import Post from "./Post/Post";
+import {addPostActionCreator, newPostTextActionCreator} from "./../../redux/state";
 
 const Maincontent = (props) => {
 
@@ -17,13 +18,13 @@ const Maincontent = (props) => {
     let newAnswerArea = React.createRef();
 
     let addpost = () => {
-        props.dispatch({ type: "ADD-POST" });
+        props.dispatch(addPostActionCreator());
     }
 
     let newPostText = () => {
         let questText = newQuestionArea.current.value;
         let ansText = newAnswerArea.current.value;
-        props.dispatch({ type: "NEW-POST-QUESTION-FUNC", stateQuestText: questText, stateAnsText: ansText });
+        props.dispatch(newPostTextActionCreator(questText, ansText));
     }
 
 
