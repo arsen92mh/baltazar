@@ -1,5 +1,7 @@
 const ADD_POST = "ADD-POST";
 const NEW_POST_TEXT = "NEW-POST-QUESTION-FUNC";
+const NEW_COMMENT_TEXT = "NEW-COMMENT-TEXT";
+const NEW_COMMENT = "NEW-COMMENT"
 
 let store = {
     _state: {
@@ -37,6 +39,7 @@ let store = {
                 ]
             }
         ],
+        newCommentData: "",
         newPostData: {
             newPostQuestion: "",
             newPostAnswer: ""
@@ -79,6 +82,7 @@ let store = {
                 postTime: "",
                 postDate: "",
                 hasComments: false,
+                newCommentData : "",
                 commentData: []
             }
             let postDataIndex = this._state.postData.length;
@@ -99,6 +103,21 @@ let store = {
             this._state.newPostData.newPostQuestion = action.stateQuestText;
             this._state.newPostData.newPostAnswer = action.stateAnsText;
             this._rerenderWholeDom(store.getState());
+        } else if (action.type === NEW_COMMENT_TEXT) {
+            this._state.newCommentData = action.commentText;
+            this._rerenderWholeDom(store.getState());
+        } else if (action.type === NEW_COMMENT) {
+            let t = this.dateCreator();
+            let newComment = {
+                commid: this._state.postData[0].commentData.length + 1,
+                commText: this._state.newCommentData,
+                commTime: `${t.hour}:${t.minute}`,
+                commDate: `${t.day}.${t.month}.${t.year}`,
+                likesCount: 0
+            }
+            this._state.postData[0].commentData.push(newComment);
+            this._state.newCommentData = "";
+            this._rerenderWholeDom(store.getState());
         }
     }
 
@@ -113,6 +132,19 @@ export const newPostTextActionCreator = (a, b) => {
         type: NEW_POST_TEXT,
         stateQuestText: a,
         stateAnsText: b
+    }
+}
+
+export const newCommentTextActionCreator = (message) => {
+    return {
+        type: NEW_COMMENT_TEXT,
+        commentText: message,
+    }
+}
+
+export const newCommentActionCreator = () => {
+    return {
+        type: NEW_COMMENT
     }
 }
 

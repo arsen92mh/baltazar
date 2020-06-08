@@ -12,7 +12,7 @@ const Maincontent = (props) => {
                 (n) => { return <NavLink to={n.childPath}>{n.childName}</NavLink> })}</Route>
         });
 
-    let postArr = props.state.postData.map(p => <Post postData={p} commentData={p.commentData} />)
+    let postArr = props.state.postData.map(p => <Post postData={p} commentData={p.commentData} dispatch={props.dispatch} newCommentData={props.state.newCommentData}/>)
 
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
