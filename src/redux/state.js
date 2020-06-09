@@ -1,7 +1,10 @@
 const ADD_POST = "ADD-POST";
 const NEW_POST_TEXT = "NEW-POST-QUESTION-FUNC";
 const NEW_COMMENT_TEXT = "NEW-COMMENT-TEXT";
-const NEW_COMMENT = "NEW-COMMENT"
+const NEW_COMMENT = "NEW-COMMENT";
+const UPDATE_NEW_CATEGORY = "UPDATE-NEW-CATEGORY";
+const CREATE_NEW_CATEGORY = "CREATE-NEW-CATEGORY";
+
 
 let store = {
     _state: {
@@ -20,6 +23,13 @@ let store = {
                 ]
             }
         ],
+        subLinks: [
+            { childId: 1, childPath: "/cl/anketa", childName: "Анкета клиента" }
+        ],
+        newSublinkData: {
+            categName: "",
+            categPath: "",
+        },
         postData: [
             {
                 postid: 1,
@@ -118,6 +128,23 @@ let store = {
             this._state.postData[0].commentData.push(newComment);
             this._state.newCommentData = "";
             this._rerenderWholeDom(store.getState());
+        } else if (action.type === UPDATE_NEW_CATEGORY) {
+            debugger;
+            this._state.newSublinkData.categName = action.name;
+            this._state.newSublinkData.categPath = action.path;
+            this._rerenderWholeDom(store.getState());
+        } else if (action.type === CREATE_NEW_CATEGORY) {
+            debugger;
+            let categ = {
+                id: this._state.linkData.length +1,
+                path: this._state.newSublinkData.categPath,
+                name: this._state.newSublinkData.categName,
+                subLinks: []
+            }
+            this._state.linkData.push(categ);
+            this._state.newSublinkData.categPath = "";
+            this._state.newSublinkData.categName = "";
+            this._rerenderWholeDom(store.getState());
         }
     }
 
@@ -147,6 +174,20 @@ export const newCommentActionCreator = () => {
         type: NEW_COMMENT
     }
 }
+
+export const updateNewCategoryActionCreator = (a, b) => {
+    debugger;
+    return {
+        type: UPDATE_NEW_CATEGORY,
+        name: a,
+        path: b
+    }
+}
+
+export const createCategoryActionCreator = () => {
+    return {type: CREATE_NEW_CATEGORY}
+}
+
 
 
 export default store;
