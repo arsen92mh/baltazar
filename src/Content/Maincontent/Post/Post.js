@@ -2,13 +2,11 @@ import React from "react";
 import style from "./Post.module.css";
 import Comment from "./Comment/Comment.js";
 import Qa from "./Qa/Qa.js";
-import {newCommentTextActionCreator, newCommentActionCreator} from "./../../../redux/state.js";
+import { newCommentTextActionCreator, newCommentActionCreator } from "./../../../redux/state.js";
 
 const Post = (props) => {
 
-    let commentArr = props.commentData.map( c => <Comment commentData={c}/> );
-
- 
+    let commentArr = props.commentData.map(c => <Comment commentData={c} />);
 
     let addNewCommentText = (e) => {
         let message = e.target.value;
@@ -24,15 +22,15 @@ const Post = (props) => {
 
             <div className={style.qawrapper}>
 
-                <Qa postData={props.postData}/>
-                
+                <Qa postData={props.postData} />
+
             </div>
 
             <div className={style.commentArea}>
                 <textarea onChange={addNewCommentText} placeholder="Комментарий" value={props.newCommentData}></textarea>
                 <button onClick={addComment}>Добавить комментарий</button>
 
-                { commentArr }
+                {commentArr}
 
             </div>
 

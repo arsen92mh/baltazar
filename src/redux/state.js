@@ -23,10 +23,7 @@ let store = {
                 ]
             }
         ],
-        subLinks: [
-            { childId: 1, childPath: "/cl/anketa", childName: "Анкета клиента" }
-        ],
-        newSublinkData: {
+        newLinkData: {
             categName: "",
             categPath: "",
         },
@@ -129,21 +126,19 @@ let store = {
             this._state.newCommentData = "";
             this._rerenderWholeDom(store.getState());
         } else if (action.type === UPDATE_NEW_CATEGORY) {
-            debugger;
-            this._state.newSublinkData.categName = action.name;
-            this._state.newSublinkData.categPath = action.path;
+            this._state.newLinkData.categName = action.name;
+            this._state.newLinkData.categPath = action.path;
             this._rerenderWholeDom(store.getState());
         } else if (action.type === CREATE_NEW_CATEGORY) {
-            debugger;
             let categ = {
                 id: this._state.linkData.length +1,
-                path: this._state.newSublinkData.categPath,
-                name: this._state.newSublinkData.categName,
+                path: this._state.newLinkData.categPath,
+                name: this._state.newLinkData.categName,
                 subLinks: []
             }
             this._state.linkData.push(categ);
-            this._state.newSublinkData.categPath = "";
-            this._state.newSublinkData.categName = "";
+            this._state.newLinkData.categPath = "";
+            this._state.newLinkData.categName = "";
             this._rerenderWholeDom(store.getState());
         }
     }

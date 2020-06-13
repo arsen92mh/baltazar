@@ -13,7 +13,7 @@ const Maincontent = (props) => {
         });
 
     let postArr = props.state.postData.map(p => <Post postData={p} commentData={p.commentData} dispatch={props.dispatch} newCommentData={props.state.newCommentData}/>)
-
+    
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
 
@@ -39,12 +39,12 @@ const Maincontent = (props) => {
             <div className={style.content}>
 
                 <button onClick={addpost}>Add post</button>
-                <div className="postModal">
-                    <div className="queationBox">
-                        <textarea onChange={newPostText} value={props.state.newPostData.newPostQuestion} ref={newQuestionArea} className="questionArea" placeholder="Enter your question"></textarea>
+                <div className={style.postModal}>
+                    <div className={style.queationBox}>
+                        <textarea onChange={newPostText} value={props.state.newPostData.newPostQuestion} ref={newQuestionArea} className={style.questionArea} placeholder="Enter your question"></textarea>
                     </div>
-                    <div className="answerBox" >
-                        <textarea onChange={newPostText} ref={newAnswerArea} className="answerArea" placeholder="Enter your answer" value={props.state.newPostData.newPostAnswer}></textarea>
+                    <div className={style.answerBox} >
+                        <textarea onChange={newPostText} ref={newAnswerArea} className={style.answerArea} placeholder="Enter your answer" value={props.state.newPostData.newPostAnswer}></textarea>
                     </div>
                 </div>
 

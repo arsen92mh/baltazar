@@ -24,8 +24,8 @@ const Links = (props) => {
         <div className={style.wrapper}>
             <div className={style.addCategoryHeader}>ADD CATEGORY</div>
             <div className={style.addCategoryWrapper}>
-                <textarea onChange={updatingNewCategory} placeholder="name" ref={categoryName} value={props.newSublinkData.categName}/>
-                <textarea onChange={updatingNewCategory} placeholder="path: /blabla" ref={categoryPath} value={props.newSublinkData.categPath}/>
+                <textarea onChange={updatingNewCategory} placeholder="name" ref={categoryName} value={props.newLinkData.categName}/>
+                <textarea onChange={updatingNewCategory} placeholder="path: /blabla" ref={categoryPath} value={props.newLinkData.categPath}/>
                 <button onClick={createCategory}>Добавить категорию</button>
             </div>
             {linksArr}

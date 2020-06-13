@@ -8,7 +8,7 @@ const Nav = (props) => {
     return (
         <div className={style.wrapper}>
             <Logo />
-            <Links linkData={props.linkData} newSublinkData={props.newSublinkData} dispatch={props.dispatch}/>
+            <Links linkData={props.linkData} newLinkData={props.newLinkData} dispatch={props.dispatch}/>
         </div>
     );
 }
