@@ -13,7 +13,7 @@ function App(props) {
     <BrowserRouter>
       <div className="App">
         <div className="App_wrapper">
-          <Nav linkData={props.state.linkData} newLinkData={props.state.newLinkData} dispatch={store.dispatch.bind(store)} />
+          <Nav linkData={props.state.links.linkData} newLinkData={props.state.links.newLinkData} dispatch={store.dispatch.bind(store)} />
           <div className="content_wrapper">
             <Header />
             <Contentpicture />
