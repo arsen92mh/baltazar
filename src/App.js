@@ -5,10 +5,9 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import Header from './Content/Header/Header';
 import Contentpicture from './Content/Contentpicture/Contentpicture';
 import Maincontent from './Content/Maincontent/Maincontent';
-import store from './redux/state';
+import store from './redux/redux-store';
 
 function App(props) {
-
   return (
     <BrowserRouter>
       <div className="App">

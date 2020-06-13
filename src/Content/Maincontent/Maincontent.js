@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Maincontent.module.css";
 import { NavLink, Route } from "react-router-dom";
 import Post from "./Post/Post";
-import {addPostActionCreator, newPostTextActionCreator} from "./../../redux/state";
+import {addPostActionCreator, newPostTextActionCreator} from "../../redux/post-reducer";
 
 const Maincontent = (props) => {
 

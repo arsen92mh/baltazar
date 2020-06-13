@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Post.module.css";
 import Comment from "./Comment/Comment.js";
 import Qa from "./Qa/Qa.js";
-import { newCommentTextActionCreator, newCommentActionCreator } from "./../../../redux/state.js";
+import { newCommentTextActionCreator, newCommentActionCreator } from "../../../redux/post-reducer";
 
 const Post = (props) => {
 

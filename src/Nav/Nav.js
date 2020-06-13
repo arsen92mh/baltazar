@@ -4,7 +4,6 @@ import Logo from './Logo/Logo';
 import Links from './Links/Links';
 
 const Nav = (props) => {
-
     return (
         <div className={style.wrapper}>
             <Logo />

@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Links.module.css";
 import { NavLink, Route } from "react-router-dom";
-import {updateNewCategoryActionCreator, createCategoryActionCreator} from "./../../redux/state.js";
+import {updateNewCategoryActionCreator, createCategoryActionCreator} from "./../../redux/links-reducer";
 
 const Links = (props) => {
 
@@ -19,6 +19,7 @@ const Links = (props) => {
     let createCategory = () => {
         props.dispatch(createCategoryActionCreator());
     }
+
 
     return (
         <div className={style.wrapper}>

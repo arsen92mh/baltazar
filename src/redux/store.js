@@ -1,13 +1,5 @@
-import { postReducer } from "./posts-reducer.js";
+import { postReducer } from "./post-reducer.js";
 import { linkReducer } from "./links-reducer.js";
-
-const ADD_POST = "ADD-POST";
-const NEW_POST_TEXT = "NEW-POST-QUESTION-FUNC";
-const NEW_COMMENT_TEXT = "NEW-COMMENT-TEXT";
-const NEW_COMMENT = "NEW-COMMENT";
-const UPDATE_NEW_CATEGORY = "UPDATE-NEW-CATEGORY";
-const CREATE_NEW_CATEGORY = "CREATE-NEW-CATEGORY";
-
 
 
 
@@ -89,51 +81,17 @@ let store = {
         }
     },
     dispatch(action) {
-
-        this._state.posts = postReducer(this._state.posts, action, this.dateCreator());
         this._state.links = linkReducer(this._state.links, action);
+        this._state.posts = postReducer(this._state.posts, action, this.dateCreator());
+        
         this._rerenderWholeDom(store.getState());
     }
 
 }
 
-export const addPostActionCreator = () => {
-    return { type: ADD_POST }
-}
 
-export const newPostTextActionCreator = (a, b) => {
-    return {
-        type: NEW_POST_TEXT,
-        stateQuestText: a,
-        stateAnsText: b
-    }
-}
 
-export const newCommentTextActionCreator = (message) => {
-    return {
-        type: NEW_COMMENT_TEXT,
-        commentText: message,
-    }
-}
 
-export const newCommentActionCreator = () => {
-    return {
-        type: NEW_COMMENT
-    }
-}
 
-export const updateNewCategoryActionCreator = (a, b) => {
-    debugger;
-    return {
-        type: UPDATE_NEW_CATEGORY,
-        name: a,
-        path: b
-    }
-}
-
-export const createCategoryActionCreator = () => {
-    return { type: CREATE_NEW_CATEGORY }
-}
-
-export default store;
-window.store = store;
+/* export default store;
+window.store = store; */
