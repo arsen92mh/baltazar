@@ -1,8 +1,7 @@
 import React from "react";
 import style from "./Maincontent.module.css";
 import { NavLink, Route } from "react-router-dom";
-import Post from "./Post/Post";
-import {addPostActionCreator, newPostTextActionCreator} from "../../redux/post-reducer";
+import PostContainer from "./Post/PostContainer";
 
 const Maincontent = (props) => {
 
@@ -11,20 +10,18 @@ const Maincontent = (props) => {
             return <Route path={r.path}>{r.subLinks.map(
                 (n) => { return <NavLink to={n.childPath}>{n.childName}</NavLink> })}</Route>
         });
-
-    let postArr = props.state.posts.postData.map(p => <Post postData={p} commentData={p.commentData} dispatch={props.dispatch} newCommentData={props.state.posts.newCommentData}/>)
     
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
 
     let addpost = () => {
-        props.dispatch(addPostActionCreator());
+        props.addpostCont();
     }
 
     let newPostText = () => {
         let questText = newQuestionArea.current.value;
         let ansText = newAnswerArea.current.value;
-        props.dispatch(newPostTextActionCreator(questText, ansText));
+        props.newPostTextCont(questText, ansText);
     }
 
 
@@ -48,7 +45,8 @@ const Maincontent = (props) => {
                     </div>
                 </div>
 
-                {postArr}
+
+                <PostContainer postData={props.state.posts.postData} commentData={props.state.posts.postData.commentData} newCommentData={props.state.posts.newCommentData} dispatch={props.dispatch}/>
 
             </div>
         </div>

@@ -1,13 +1,15 @@
 import React from 'react';
 import style from "./Nav.module.css";
 import Logo from './Logo/Logo';
-import Links from './Links/Links';
+import LinksContainer from './Links/LinksContainer';
+import AddCategoryContainer from './Links/AddCategoryContainer';
 
 const Nav = (props) => {
     return (
         <div className={style.wrapper}>
             <Logo />
-            <Links linkData={props.linkData} newLinkData={props.newLinkData} dispatch={props.dispatch}/>
+            <AddCategoryContainer linkData={props.linkData} newLinkData={props.newLinkData} dispatch={props.dispatch}/>
+            <LinksContainer linkData={props.linkData}/>
         </div>
     );
 }
