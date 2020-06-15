@@ -8,7 +8,7 @@ const Nav = (props) => {
     return (
         <div className={style.wrapper}>
             <Logo />
-            <AddCategoryContainer linkData={props.linkData} newLinkData={props.newLinkData} dispatch={props.dispatch}/>
+            <AddCategoryContainer linkData={props.linkData} newLinkData={props.newLinkData} updatingNewCategoryCont={props.updatingNewCategoryCont} createCategoryCont={props.createCategoryCont}/>
             <LinksContainer linkData={props.linkData}/>
         </div>
     );

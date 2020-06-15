@@ -33,7 +33,7 @@ const Post = (props) => {
                 <textarea onChange={addNewCommentText} placeholder="Комментарий" value={props.newCommentData}></textarea>
                 <button onClick={addComment}>Добавить комментарий</button>
 
-                <CommentContainer commentData={props.commentData}/>
+                <CommentContainer commentData={props.commentData} />
 
             </div>
 

@@ -10,7 +10,7 @@ const Maincontent = (props) => {
             return <Route path={r.path}>{r.subLinks.map(
                 (n) => { return <NavLink to={n.childPath}>{n.childName}</NavLink> })}</Route>
         });
-    
+
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
 
@@ -46,7 +46,7 @@ const Maincontent = (props) => {
                 </div>
 
 
-                <PostContainer postData={props.postData} commentData={props.commentData} newCommentData={props.newCommentData} addCommentCont={props.addCommentCont} addNewCommentTextCont={props.addNewCommentTextCont}/>
+                <PostContainer postData={props.postData} commentData={props.commentData} newCommentData={props.newCommentData} addCommentCont={props.addCommentCont} addNewCommentTextCont={props.addNewCommentTextCont} />
 
             </div>
         </div>
