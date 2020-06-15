@@ -46,7 +46,7 @@ const Maincontent = (props) => {
                 </div>
 
 
-                <PostContainer postData={props.state.posts.postData} commentData={props.state.posts.postData.commentData} newCommentData={props.state.posts.newCommentData} dispatch={props.dispatch}/>
+                <PostContainer postData={props.postData} commentData={props.commentData} newCommentData={props.newCommentData} addCommentCont={props.addCommentCont} addNewCommentTextCont={props.addNewCommentTextCont}/>
 
             </div>
         </div>
