@@ -34,11 +34,16 @@ let initialState= {
 };
 
 export const linkReducer = (state = initialState, action) => {
+
+    let stateCopy = {...state};
+    stateCopy.linkData = [...state.linkData];
+    stateCopy.newLinkData = {...state.newlinkData};
+
     switch (action.type) {
         case UPDATE_NEW_CATEGORY: 
-            state.newLinkData.categName = action.name;
-            state.newLinkData.categPath = action.path;
-            return state;
+        stateCopy.newLinkData.categName = action.name;
+        stateCopy.newLinkData.categPath = action.path;
+            return stateCopy;
         case CREATE_NEW_CATEGORY:
             let categ = {
                 id: state.linkData.length + 1,
@@ -46,10 +51,10 @@ export const linkReducer = (state = initialState, action) => {
                 name: state.newLinkData.categName,
                 subLinks: []
             }
-            state.linkData.push(categ);
-            state.newLinkData.categPath = "";
-            state.newLinkData.categName = "";
-            return state;
+            stateCopy.linkData.push(categ);
+            stateCopy.newLinkData.categPath = "";
+            stateCopy.newLinkData.categName = "";
+            return stateCopy;
         default:
             return state;
     }

@@ -1,17 +1,26 @@
-import React from "react";
-import Post from "./Post";
+import {newCommentTextActionCreator, newCommentActionCreator} from "./../../../redux/post-reducer";
+import {connect} from "react-redux";
+import MyPosts from "./MyPosts";
 
-const PostContainer = (props) => {
-
-    let postArr = props.postData.map(p => <Post postData={p} commentData={p.commentData} addNewCommentTextCont={props.addNewCommentTextCont} addCommentCont={props.addCommentCont} newCommentData={props.newCommentData} />)
-
-    return (
-        <div>
-            {postArr}
-        </div>
-    );
-
+let mapStateToProps = (state) => {
+    return {
+        postData: state.posts.postData,
+        newCommentData: state.posts.newCommentData
+    }
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addNewCommentTextCont: (message) => {
+            dispatch(newCommentTextActionCreator(message));
+        },
+        addCommentCont: () => {
+            dispatch(newCommentActionCreator());
+        }
+    }
+}
+
+const PostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 
 export default PostContainer;

@@ -1,23 +1,25 @@
-import React from "react";
-import style from "./Links.module.css";
-import { updateNewCategoryActionCreator, createCategoryActionCreator } from "../../redux/links-reducer";
 import AddCategory from "./AddCategory";
+import {createCategoryActionCreator, updateNewCategoryActionCreator} from "./../../redux/links-reducer";
+import {connect} from "react-redux";
 
-const AddCategoryContainer = (props) => {
-
-    /* let updatingNewCategoryCont = (name, path) => {
-        props.dispatch(updateNewCategoryActionCreator(name, path));
+let mapStateToProps = (state) => {
+    return {
+        linkData: state.links.linkData,
+        newLinkData: state.links.newLinkData
     }
-
-    let createCategoryCont = () => {
-        props.dispatch(createCategoryActionCreator());
-    } */
-
-
-    return (
-        <div className={style.wrapper}>
-            <AddCategory createCategoryCont={props.createCategoryCont} updatingNewCategoryCont={props.updatingNewCategoryCont} linkData={props.linkData} newLinkData={props.newLinkData} />
-        </div>
-    );
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        createCategoryCont: () => {
+            dispatch(createCategoryActionCreator());
+        },
+        updatingNewCategoryCont: (name, path) => {
+            dispatch(updateNewCategoryActionCreator(name, path));
+        }
+    }
+}
+
+const AddCategoryContainer = connect(mapStateToProps, mapDispatchToProps)(AddCategory);
+
 export default AddCategoryContainer;

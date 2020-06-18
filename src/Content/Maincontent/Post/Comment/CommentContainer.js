@@ -4,7 +4,9 @@ import Comment from "./Comment";
 
 const CommentContainer = (props) => {
 
-    let commentArr = props.commentData.map(c => <Comment commentData={c} />);
+    let commentArr = props.commentData.map(c => <Comment key={c.commId} commentData={c} />);
+
+   
 
     return (
         <div className={style.comm}>

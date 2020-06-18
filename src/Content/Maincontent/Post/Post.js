@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Post.module.css";
-import CommentContainer from "./Comment/CommentContainer";
+import Comment from "./Comment/Comment";
 
 const Post = (props) => {
 
@@ -13,6 +13,8 @@ const Post = (props) => {
     let addComment = () => {
         props.addCommentCont();
     }
+
+    let commentArr = props.commentData.map(c => <Comment key={c.commId} commentData={c} />);
 
     return (
         <div className={style.post}>
@@ -33,7 +35,8 @@ const Post = (props) => {
                 <textarea onChange={addNewCommentText} placeholder="Комментарий" value={props.newCommentData}></textarea>
                 <button onClick={addComment}>Добавить комментарий</button>
 
-                <CommentContainer commentData={props.commentData} />
+                {commentArr}
+
 
             </div>
 

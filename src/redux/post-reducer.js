@@ -77,6 +77,11 @@ let creteDate = () => {
 
 export const postReducer = (state = initialState, action) => {
 
+    let stateCopy = { ...state };
+    stateCopy.postData = [...state.postData];
+    stateCopy.newPostData = { ...state.newPostData };
+    stateCopy.postData[0].commentData = [...state.postData[0].commentData];
+
     let t = creteDate();
 
     switch (action.type) {
@@ -92,25 +97,25 @@ export const postReducer = (state = initialState, action) => {
                 newCommentData: "",
                 commentData: []
             }
+
             let postDataIndex = state.postData.length;
             postWrap.postid = postDataIndex + 1;
-            postWrap.question = state.newPostData.newPostQuestion;
-            postWrap.answer = state.newPostData.newPostAnswer;
+            postWrap.question = stateCopy.newPostData.newPostQuestion;
+            postWrap.answer = stateCopy.newPostData.newPostAnswer;
             postWrap.postDate = `${t.day}.${t.month}.${t.year}`;
             postWrap.postTime = `${t.hour}:${t.minute}`;
 
-
-            state.postData.unshift(postWrap);
-            state.newPostData.newPostQuestion = "";
-            state.newPostData.newPostAnswer = "";
-            return state;
+            stateCopy.postData.unshift(postWrap);
+            stateCopy.newPostData.newPostQuestion = "";
+            stateCopy.newPostData.newPostAnswer = "";
+            return stateCopy;
         case NEW_POST_TEXT:
-            state.newPostData.newPostQuestion = action.stateQuestText;
-            state.newPostData.newPostAnswer = action.stateAnsText;
-            return state;
+            stateCopy.newPostData.newPostQuestion = action.stateQuestText;
+            stateCopy.newPostData.newPostAnswer = action.stateAnsText;
+            return stateCopy;
         case NEW_COMMENT_TEXT:
-            state.newCommentData = action.commentText;
-            return state;
+            stateCopy.newCommentData = action.commentText;
+            return stateCopy;
         case NEW_COMMENT:
             let newComment = {
                 commid: state.postData[0].commentData.length + 1,
@@ -119,9 +124,9 @@ export const postReducer = (state = initialState, action) => {
                 commDate: `${t.day}.${t.month}.${t.year}`,
                 likesCount: 0
             }
-            state.postData[0].commentData.push(newComment);
-            state.newCommentData = "";
-            return state;
+            stateCopy.postData[0].commentData.push(newComment);
+            stateCopy.newCommentData = "";
+            return stateCopy;
         default:
             return state;
 

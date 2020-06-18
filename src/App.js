@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import NavContainer from './Nav/NavContainer';
+import Nav from './Nav/Nav';
 import { Route, BrowserRouter } from 'react-router-dom';
 import Header from './Content/Header/Header';
 import Contentpicture from './Content/Contentpicture/Contentpicture';
@@ -12,7 +12,7 @@ function App(props) {
     <BrowserRouter>
       <div className="App">
         <div className="App_wrapper">
-          <NavContainer linkData={props.state.links.linkData} newLinkData={props.state.links.newLinkData} dispatch={store.dispatch.bind(store)} />
+          <Nav/>
           <div className="content_wrapper">
             <Header />
             <Contentpicture />
