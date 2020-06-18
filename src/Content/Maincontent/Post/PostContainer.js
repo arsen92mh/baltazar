@@ -11,11 +11,11 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        addNewCommentTextCont: (message) => {
-            dispatch(newCommentTextActionCreator(message));
+        addNewCommentTextCont: (message, id) => {
+            dispatch(newCommentTextActionCreator(message, id));
         },
-        addCommentCont: () => {
-            dispatch(newCommentActionCreator());
+        addCommentCont: (id) => {
+            dispatch(newCommentActionCreator(id));
         }
     }
 }

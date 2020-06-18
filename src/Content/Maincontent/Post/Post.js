@@ -3,15 +3,17 @@ import style from "./Post.module.css";
 import Comment from "./Comment/Comment";
 
 const Post = (props) => {
-
+    debugger;
 
     let addNewCommentText = (e) => {
         let message = e.target.value;
-        props.addNewCommentTextCont(message);
+        let id = props.ind;
+        props.addNewCommentTextCont(message, id);
     }
 
     let addComment = () => {
-        props.addCommentCont();
+        let id = props.ind;
+        props.addCommentCont(id);
     }
 
     let commentArr = props.commentData.map(c => <Comment key={c.commId} commentData={c} />);

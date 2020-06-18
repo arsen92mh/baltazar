@@ -15,16 +15,18 @@ export const newPostTextActionCreator = (a, b) => {
     }
 }
 
-export const newCommentTextActionCreator = (message) => {
+export const newCommentTextActionCreator = (message, id) => {
     return {
         type: NEW_COMMENT_TEXT,
         commentText: message,
+        ind: id
     }
 }
 
-export const newCommentActionCreator = () => {
+export const newCommentActionCreator = (id) => {
     return {
-        type: NEW_COMMENT
+        type: NEW_COMMENT,
+        ind: id
     }
 }
 
@@ -94,7 +96,6 @@ export const postReducer = (state = initialState, action) => {
                 postTime: "",
                 postDate: "",
                 hasComments: false,
-                newCommentData: "",
                 commentData: []
             }
 
@@ -105,7 +106,7 @@ export const postReducer = (state = initialState, action) => {
             postWrap.postDate = `${t.day}.${t.month}.${t.year}`;
             postWrap.postTime = `${t.hour}:${t.minute}`;
 
-            stateCopy.postData.unshift(postWrap);
+            stateCopy.postData.push(postWrap);
             stateCopy.newPostData.newPostQuestion = "";
             stateCopy.newPostData.newPostAnswer = "";
             return stateCopy;
@@ -118,14 +119,15 @@ export const postReducer = (state = initialState, action) => {
             return stateCopy;
         case NEW_COMMENT:
             let newComment = {
-                commid: state.postData[0].commentData.length + 1,
+                commid: state.postData[action.ind-1].commentData.length,
                 commText: state.newCommentData,
                 commTime: `${t.hour}:${t.minute}`,
                 commDate: `${t.day}.${t.month}.${t.year}`,
                 likesCount: 0
             }
-            stateCopy.postData[0].commentData.push(newComment);
+            stateCopy.postData[action.ind-1].commentData.push(newComment);
             stateCopy.newCommentData = "";
+            debugger;
             return stateCopy;
         default:
             return state;
