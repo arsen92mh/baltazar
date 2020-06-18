@@ -3,7 +3,6 @@ import style from "./Post.module.css";
 import Comment from "./Comment/Comment";
 
 const Post = (props) => {
-    debugger;
 
     let addNewCommentText = (e) => {
         let message = e.target.value;

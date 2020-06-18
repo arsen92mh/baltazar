@@ -106,7 +106,7 @@ export const postReducer = (state = initialState, action) => {
             postWrap.postDate = `${t.day}.${t.month}.${t.year}`;
             postWrap.postTime = `${t.hour}:${t.minute}`;
 
-            stateCopy.postData.push(postWrap);
+            stateCopy.postData.unshift(postWrap);
             stateCopy.newPostData.newPostQuestion = "";
             stateCopy.newPostData.newPostAnswer = "";
             return stateCopy;
@@ -125,8 +125,13 @@ export const postReducer = (state = initialState, action) => {
                 commDate: `${t.day}.${t.month}.${t.year}`,
                 likesCount: 0
             }
-            stateCopy.postData[action.ind-1].commentData.push(newComment);
-            stateCopy.newCommentData = "";
+
+            for (let i = 0; i< stateCopy.postData.length; i++) {
+                if (stateCopy.postData[i].postid === (action.ind)) {
+                    stateCopy.postData[i].commentData.push(newComment);
+                    stateCopy.newCommentData = "";
+                }
+            }
             debugger;
             return stateCopy;
         default:
