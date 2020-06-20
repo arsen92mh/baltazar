@@ -14,7 +14,6 @@ const Post = (props) => {
         let id = props.ind;
         props.addCommentCont(id);
     }
-
     let commentArr = props.commentData.map(c => <Comment key={c.commId} commentData={c} />);
 
     return (

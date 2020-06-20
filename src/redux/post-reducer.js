@@ -40,6 +40,7 @@ let initialState = {
             postTime: "14:10",
             postDate: "14.05.2020",
             hasComments: true,
+            newCommentData: "",
             commentData: [{
                 commId: 1,
                 commText: "почему?",
@@ -50,7 +51,6 @@ let initialState = {
             ]
         }
     ],
-    newCommentData: "",
     newPostData: {
         newPostQuestion: "",
         newPostAnswer: ""
@@ -79,61 +79,77 @@ let creteDate = () => {
 
 export const postReducer = (state = initialState, action) => {
 
-    let stateCopy = { ...state };
-    stateCopy.postData = [...state.postData];
-    stateCopy.newPostData = { ...state.newPostData };
-    stateCopy.postData[0].commentData = [...state.postData[0].commentData];
 
     let t = creteDate();
 
     switch (action.type) {
         case ADD_POST:
             let postWrap = {
-                postid: 0,
-                question: "",
-                answer: "",
                 postAuthor: "",
-                postTime: "",
-                postDate: "",
+                newCommentData: "",
                 hasComments: false,
                 commentData: []
             }
 
-            let postDataIndex = state.postData.length;
-            postWrap.postid = postDataIndex + 1;
-            postWrap.question = stateCopy.newPostData.newPostQuestion;
-            postWrap.answer = stateCopy.newPostData.newPostAnswer;
+            postWrap.postid = state.postData.length + 1;
+            postWrap.question = state.newPostData.newPostQuestion;
+            postWrap.answer = state.newPostData.newPostAnswer;
             postWrap.postDate = `${t.day}.${t.month}.${t.year}`;
             postWrap.postTime = `${t.hour}:${t.minute}`;
 
-            stateCopy.postData.unshift(postWrap);
-            stateCopy.newPostData.newPostQuestion = "";
-            stateCopy.newPostData.newPostAnswer = "";
-            return stateCopy;
+            return {
+                ...state,
+                postData: [...state.postData, postWrap],
+                newPostData: { ...state.newPostData, newPostQuestion: "", newPostAnswer: "" }
+            }
+
+
         case NEW_POST_TEXT:
-            stateCopy.newPostData.newPostQuestion = action.stateQuestText;
-            stateCopy.newPostData.newPostAnswer = action.stateAnsText;
-            return stateCopy;
+
+
+            return {
+                ...state,
+                newPostData: {
+                    ...state.newPostData,
+                    newPostQuestion: action.stateQuestText,
+                    newPostAnswer: action.stateAnsText
+                }
+            };
+
         case NEW_COMMENT_TEXT:
-            stateCopy.newCommentData = action.commentText;
-            return stateCopy;
+
+
+            state.postData[action.ind - 1].newCommentData = action.commentText;
+
+            return {
+                ...state,
+                postData: [...state.postData]
+
+
+            }
+
+
         case NEW_COMMENT:
             let newComment = {
-                commid: state.postData[action.ind-1].commentData.length,
-                commText: state.newCommentData,
+                commid: state.postData[action.ind - 1].commentData.length + 1,
+                commText: state.postData[action.ind - 1].newCommentData,
                 commTime: `${t.hour}:${t.minute}`,
                 commDate: `${t.day}.${t.month}.${t.year}`,
                 likesCount: 0
             }
 
-            for (let i = 0; i< stateCopy.postData.length; i++) {
-                if (stateCopy.postData[i].postid === (action.ind)) {
-                    stateCopy.postData[i].commentData.push(newComment);
-                    stateCopy.newCommentData = "";
-                }
-            }
-            debugger;
-            return stateCopy;
+
+            state.postData[action.ind - 1].commentData.push(newComment);
+            state.postData[action.ind - 1].newCommentData = "";
+
+            return {
+                ...state,
+                postData: [...state.postData]
+            };
+
+
+
+
         default:
             return state;
 

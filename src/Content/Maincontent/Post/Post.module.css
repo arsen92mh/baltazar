@@ -5,3 +5,7 @@
     margin: 5px;
 }
 
+.postArrWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+}
