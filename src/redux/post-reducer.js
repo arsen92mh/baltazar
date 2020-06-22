@@ -34,9 +34,9 @@ let initialState = {
     postData: [
         {
             postid: 1,
-            question: "В заявке не указаны модель/год выпуска авто. Тип диллера – Официальный.",
-            answer: "Возвращать заявку по этой причине можно только если она полностью рассмотрена, и вы собираетесь ее одобрить",
-            postAuthor: "Пупкина Залупкина",
+            question: "Почему?",
+            answer: "По качану!!",
+            postAuthor: "Некто",
             postTime: "14:10",
             postDate: "14.05.2020",
             hasComments: true,
@@ -118,14 +118,12 @@ export const postReducer = (state = initialState, action) => {
 
         case NEW_COMMENT_TEXT:
 
-
             state.postData[action.ind - 1].newCommentData = action.commentText;
 
+            
             return {
                 ...state,
                 postData: [...state.postData]
-
-
             }
 
 

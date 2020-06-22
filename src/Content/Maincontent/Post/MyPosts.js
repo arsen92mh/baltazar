@@ -12,9 +12,15 @@ const MyPosts = (props) => {
         addCommentCont={props.addCommentCont} 
         newCommentData={p.newCommentData}  dispatch={props.dispatch}/>)
 
+        let reversePostArr =[];
+
+        for (let i = 0; i <postArr.length; i++) {
+            reversePostArr.unshift(postArr[i]);
+        }
+        
     return (
         <div className={style.postArrWrapper}>
-            {postArr}
+            {reversePostArr}
         </div>
     );
 }
