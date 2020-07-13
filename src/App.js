@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
 import Nav from './Nav/Nav';
-import { Route, BrowserRouter } from 'react-router-dom';
+import {  BrowserRouter } from 'react-router-dom';
 import Header from './Content/Header/Header';
 import Contentpicture from './Content/Contentpicture/Contentpicture';
-import MaincontentContainer from './Content/Maincontent/MaincontentContainer';
-import store from './redux/redux-store';
+import Maincontent from './Content/Maincontent/MaincontentNew';
 
 function App(props) {
   return (
@@ -16,7 +15,7 @@ function App(props) {
           <div className="content_wrapper">
             <Header />
             <Contentpicture />
-            <MaincontentContainer state={props.state} dispatch={store.dispatch.bind(store)}/>
+            <Maincontent/>
           </div>
         </div>
       </div>

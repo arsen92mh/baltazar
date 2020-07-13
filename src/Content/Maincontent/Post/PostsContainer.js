@@ -1,5 +1,5 @@
-import { addPostActionCreator, newPostTextActionCreator, newCommentTextActionCreator, newCommentActionCreator } from "../../redux/post-reducer";
-import Maincontent from "./Maincontent";
+import { addPostActionCreator, newPostTextActionCreator} from "../../../redux/post-reducer";
+import Posts from "./Posts";
 import {connect} from "react-redux";
 
 
@@ -23,6 +23,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const MaincontentContainer = connect(mapStateToProps,mapDispatchToProps)(Maincontent);
+const PostsContainer = connect(mapStateToProps,mapDispatchToProps)(Posts);
 
-export default MaincontentContainer;
+export default PostsContainer;

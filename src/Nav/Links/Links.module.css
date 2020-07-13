@@ -3,14 +3,11 @@
     flex-direction: column;
 }
 
-
 .active {
     color: red;
     border-right: 2px solid blue;
     transition: 1s;
 }
-
-
 
 a {
     text-decoration: none;
@@ -18,11 +15,5 @@ a {
     font-size: 20px;
     margin-bottom: 5px;
     border-right: 1px solid rgba(0, 0, 255, 0);
-}
-
-.wrapper button {
-    margin: 0 auto;
-    width: 150px;
-    margin-bottom: 15px;
 }
 

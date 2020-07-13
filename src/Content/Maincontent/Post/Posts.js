@@ -1,15 +1,8 @@
-import React from "react";
-import style from "./Maincontent.module.css";
-import { NavLink, Route } from "react-router-dom";
-import PostContainer from "./Post/PostContainer";
+import React from 'react'
+import style from "../Maincontent.module.css";
+import PostContainer from "./PostContainer";
 
-const Maincontent = (props) => {
-
-    let routeOfLinks = props.linkData.map(
-        (r) => {
-            return <Route path={r.path}>{r.subLinks.map(
-                (n) => { return <NavLink to={n.childPath}>{n.childName}</NavLink> })}</Route>
-        });
+const Posts = (props) => {
 
     let newQuestionArea = React.createRef();
     let newAnswerArea = React.createRef();
@@ -25,12 +18,7 @@ const Maincontent = (props) => {
     }
 
     return (
-        <div className={style.wrapper}>
-            <div className={style.header}>
-
-                {routeOfLinks}
-
-            </div>
+        <>
 
             <div className={style.content}>
 
@@ -45,18 +33,12 @@ const Maincontent = (props) => {
                 </div>
 
 
-                <PostContainer 
-                postData={props.postData} 
-                dispatch={props.dispatch} 
-                commentData={props.commentData} 
-                newCommentData={props.newCommentData} 
-                addCommentCont={props.addCommentCont} 
-                addNewCommentTextCont={props.addNewCommentTextCont} 
-                />
+                <PostContainer/>
 
             </div>
-        </div>
+
+        </>
     );
 }
 
-export default Maincontent;
+export default Posts;
