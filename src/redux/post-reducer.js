@@ -117,6 +117,7 @@ export const postReducer = (state = initialState, action) => {
             };
 
         case NEW_COMMENT_TEXT:
+            debugger;
 
             state.postData[action.ind - 1].newCommentData = action.commentText;
 

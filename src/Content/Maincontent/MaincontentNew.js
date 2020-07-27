@@ -3,7 +3,7 @@ import style from "./Maincontent.module.css";
 import Documents from "../Documents/Documents";
 import { NavLink, Route } from "react-router-dom";
 import PostsContainer from "./Post/PostsContainer";
-import Users from "../../Users/Users";
+import UsersContainer from "../../Users/UsersContainer";
 
 const Maincontent = (props) => {
     return (
@@ -12,7 +12,7 @@ const Maincontent = (props) => {
 
             <Route path="/docs" render={() => <Documents />}></Route>
             <Route path="/questions" render={() => <PostsContainer />}></Route>
-            <Route path="/users" render={() => <Users/>}></Route>
+            <Route path="/users" render={() => <UsersContainer/>}></Route>
             
         </div>
     );
