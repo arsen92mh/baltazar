@@ -7,8 +7,9 @@ const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
 let initialState= {
     usersList: [],
     totalCount: 0,
-    pageSize: 5,
-    currentPage: 1
+    pageSize: 10,
+    currentPage: 1,
+    paginationSize: 10
 }
 
 export const setUsersAC = (users) =>  ({type: SET_USERS, users});

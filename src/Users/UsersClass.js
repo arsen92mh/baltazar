@@ -26,14 +26,33 @@ class Users extends React.Component {
     setCurrentPage = (page) => {
         this.props.setCurrentPage(page);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
-                this.props.setUsers(response.data.items);
-            });
+            this.props.setUsers(response.data.items);
+        });
     }
     render() {
         let pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize);
         let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
+
+        if (pagesCount <= this.props.paginationSize) {
+            for (let i = 1; i< pagesCount; i++){
+                pages.push(i);
+            }
+        } else {
+            if (pagesCount > 5) {
+                let min = this.props.currentPage - 5,
+                    max;
+                    if (min <= 1) {
+                        max = 10;
+                    } else {
+                        max = this.props.currentPage +5;
+                    }
+                for (let i = min; i <= max; i++){
+                    if (i > 0){
+                        pages.push(i);
+                    }
+                }
+            }
+
         }
         return <div>
             Сотрудники подразделения
