@@ -2,15 +2,18 @@ import React from 'react'
 import * as axios from "axios";
 import user from "../img/user.jpg";
 import style from "./users.module.css";
+import Preloader from "../Content/Preloader/Preloader";
 
 
 class Users extends React.Component {
-
     componentDidMount() {
         if (this.props.users.length === 0) {
+            this.props.isFetching(true);
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+                this.props.isFetching(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCount(response.data.totalCount);
+                
             });
         }
     }
@@ -25,11 +28,17 @@ class Users extends React.Component {
     }
     setCurrentPage = (page) => {
         this.props.setCurrentPage(page);
+        this.props.isFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
+            this.props.isFetching(false);
             this.props.setUsers(response.data.items);
+            
         });
     }
+    
     render() {
+        debugger;
+        
         let pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize);
         let pages = [];
 
@@ -38,30 +47,33 @@ class Users extends React.Component {
                 pages.push(i);
             }
         } else {
-            if (pagesCount > 5) {
-                let min = this.props.currentPage - 5,
+                let min = this.props.currentPage - (Math.ceil(this.props.paginationSize/2)),
                     max;
                     if (min <= 1) {
-                        max = 10;
-                    } else {
-                        max = this.props.currentPage +5;
+                        max = this.props.paginationSize;
+                    } else { 
+                        max = this.props.currentPage + (Math.ceil(this.props.paginationSize/2));
                     }
                 for (let i = min; i <= max; i++){
                     if (i > 0){
                         pages.push(i);
                     }
                 }
-            }
+            
 
         }
         return <div>
+
+            {(this.props.isFetchingToggle) ? <Preloader /> : <></>}
+
             Сотрудники подразделения
             <div className={style.pagination}>
                 {pages.map(p => <span
                     className={this.props.currentPage === p ? style.activePage : null}
                     onClick={() => this.setCurrentPage(p)}>{p}</span>)}
             </div>
-            {this.props.users.map(u => {
+            <div>
+                {this.props.users.map(u => {
                 return (
                     <div key={u.id}>
                         <div>{u.name}</div>
@@ -72,6 +84,7 @@ class Users extends React.Component {
                 )
             })
             }
+            </div>
 
         </div>
     }
