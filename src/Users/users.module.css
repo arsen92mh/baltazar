@@ -7,15 +7,17 @@
     font-weight: bold;
 }
 
-span {
-    cursor: pointer;
-    margin: 0 3px;
-}
-
 .pagination {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.pagination span {
+    cursor: pointer;
+    margin: 0 3px;
+}
+
+
 

@@ -10,9 +10,9 @@ class Users extends React.Component {
         if (this.props.users.length === 0) {
             this.props.isFetching(true);
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-                this.props.isFetching(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCount(response.data.totalCount);
+                this.props.isFetching(false);
                 
             });
         }
@@ -27,11 +27,11 @@ class Users extends React.Component {
         this.props.unFollow(userId);
     }
     setCurrentPage = (page) => {
-        this.props.setCurrentPage(page);
         this.props.isFetching(true);
+        this.props.setCurrentPage(page);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
-            this.props.isFetching(false);
             this.props.setUsers(response.data.items);
+            this.props.isFetching(false);
             
         });
     }
