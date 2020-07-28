@@ -12,9 +12,6 @@ const Header = () => {
                 <input type="search" placeholder= "Поиск..."></input>
                 <button>Поиск</button>
             </div>
-            <div className={style.login} >
-                <img src={loginImg} alt="login"></img>
-            </div>
         </div>
     );
 }

@@ -1,11 +1,14 @@
-import Users from "./Users";
+import Users from "./UsersClass";
 import {connect} from "react-redux";
-import {setUsersAC, followAC, unFollowAC} from "../redux/users-reducer";
+import {setUsersAC, followAC, unFollowAC, setCurrentPageAC, setTotalCountAC} from "../redux/users-reducer";
 
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users.usersList
+        users: state.users.usersList,
+        totalCount: state.users.totalCount,
+        pageSize: state.users.pageSize,
+        currentPage: state.users.currentPage
     }
 }
 
@@ -19,6 +22,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         unFollow: (userId) => {
             dispatch(unFollowAC(userId));
+        },
+        setCurrentPage: (page) => {
+            dispatch(setCurrentPageAC(page));
+        },
+        setTotalCount: (count) => {
+            dispatch(setTotalCountAC(count));
         }
         
     }

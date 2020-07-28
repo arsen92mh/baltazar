@@ -117,18 +117,21 @@ export const postReducer = (state = initialState, action) => {
             };
 
         case NEW_COMMENT_TEXT:
-            debugger;
 
-            state.postData[action.ind - 1].newCommentData = action.commentText;
-
-            
             return {
                 ...state,
-                postData: [...state.postData]
+                postData: state.postData.map( p => {
+                    if (action.ind === p.postid) {
+                        return {...p, newCommentData: action.commentText}
+                    } else {
+                        return p;
+                    }
+                })
             }
 
 
         case NEW_COMMENT:
+
             let newComment = {
                 commid: state.postData[action.ind - 1].commentData.length + 1,
                 commText: state.postData[action.ind - 1].newCommentData,
@@ -137,14 +140,22 @@ export const postReducer = (state = initialState, action) => {
                 likesCount: 0
             }
 
-
-            state.postData[action.ind - 1].commentData.push(newComment);
-            state.postData[action.ind - 1].newCommentData = "";
-
             return {
                 ...state,
-                postData: [...state.postData]
-            };
+                postData: state.postData.map( p => {
+                    if (action.ind === p.postid){
+                        return {
+                            ...p,
+                            commentData: [...p.commentData, newComment],
+                            newCommentData: ""
+                        }
+                    } else {
+                        return p;
+                    }
+                })
+            }
+
+            
 
 
 
