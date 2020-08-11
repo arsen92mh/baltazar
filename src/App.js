@@ -14,7 +14,7 @@ function App(props) {
           <Nav/>
           <div className="content_wrapper">
             <Header />
-            <Contentpicture />
+            {/* <Contentpicture /> */}
             <Maincontent/>
           </div>
         </div>

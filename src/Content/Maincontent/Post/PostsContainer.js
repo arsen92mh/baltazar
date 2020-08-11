@@ -1,14 +1,14 @@
-import { addPostActionCreator, newPostTextActionCreator} from "../../../redux/post-reducer";
+import { addPostActionCreator, newPostTextActionCreator, setPostsAC} from "../../../redux/post-reducer";
 import Posts from "./Posts";
 import {connect} from "react-redux";
 
 
 let mapStateToProps = (state) => {
     return {
-        linkData: state.links.linkData,
-        postData: state.posts.postData,
-        newPostQuestion: state.posts.newPostData.newPostQuestion,
-        newPostAnswer: state.posts.newPostData.newPostAnswer
+        isAbletoModerate: state.posts.isAbletoModerate,
+        newPostData: state.posts.newPostData,
+        categories: state.posts.categories,
+        isAuthorized: state.auth.isAuthorized
     }
 }
 

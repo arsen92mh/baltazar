@@ -1,39 +1,32 @@
 import React from 'react'
 import style from "../Maincontent.module.css";
 import PostContainer from "./PostContainer";
+import AddPost from './AddPost';
+import {Redirect} from "react-router-dom"
 
 const Posts = (props) => {
 
-    let newQuestionArea = React.createRef();
-    let newAnswerArea = React.createRef();
 
-    let addpost = () => {
-        props.addpostCont();
-    }
-
-    let newPostText = () => {
-        let questText = newQuestionArea.current.value;
-        let ansText = newAnswerArea.current.value;
-        props.newPostTextCont(questText, ansText);
-    }
 
     return (
         <>
 
+            {(props.isAuthorized === false) ? <Redirect to="login"/> : null}
+
             <div className={style.content}>
+                {
+                    (props.isAbletoModerate) ?
+                        <AddPost
+                            addpostCont={props.addpostCont}
+                            newPostTextCont={props.newPostTextCont}
+                            newPostData={props.newPostData}
+                        /> : null
+                }
 
-                <button onClick={addpost}>Add post</button>
-                <div className={style.postModal}>
-                    <div className={style.queationBox}>
-                        <textarea onChange={newPostText} value={props.newPostQuestion} ref={newQuestionArea} className={style.questionArea} placeholder="Enter your question"></textarea>
-                    </div>
-                    <div className={style.answerBox} >
-                        <textarea onChange={newPostText} ref={newAnswerArea} className={style.answerArea} placeholder="Enter your answer" value={props.newPostAnswer}></textarea>
-                    </div>
-                </div>
+            {props.categories.map( c => <span>{c.param}</span>)}
 
 
-                <PostContainer/>
+                <PostContainer />
 
             </div>
 

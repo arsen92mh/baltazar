@@ -2,9 +2,12 @@ import React from 'react'
 import user from "../img/user.jpg";
 import style from "./users.module.css";
 import Preloader from "../Content/Preloader/Preloader";
+import { NavLink } from 'react-router-dom';
 
 
 const Users = (props) => {
+
+    
 
     let pagesCount = Math.ceil(props.totalCount / props.pageSize);
         let pages = [];
@@ -42,7 +45,7 @@ const Users = (props) => {
             <div>
                 {props.users.map(u => {
                 return (
-                    <div key={u.id}>
+                        <div key={u.id}>
                         <div>{u.name}</div>
                         {(u.photos.small === null) ? <img className={style.avatar} src={user}></img> : <img src={u.photos.small}></img>}
                         <div>{u.status}</div>

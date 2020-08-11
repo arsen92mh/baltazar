@@ -3,9 +3,10 @@ import Users from "./Users";
 import {connect} from "react-redux";
 import {setUsersAC, followAC, unFollowAC, setCurrentPageAC, setTotalCountAC, isFetchingAC} from "../redux/users-reducer";
 import * as axios from "axios";
+import { Redirect } from 'react-router-dom';
 
 class UsersClass extends React.Component {
-    componentDidMount() {
+     componentDidMount() {
         if (this.props.users.length === 0) {
             this.props.isFetching(true);
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
@@ -15,7 +16,7 @@ class UsersClass extends React.Component {
                 
             });
         }
-    }
+    } 
 
     follow = (userId) => {
         this.props.follow(userId);
@@ -24,7 +25,6 @@ class UsersClass extends React.Component {
         this.props.unFollow(userId);
     }
     setCurrentPage = (page) => {
-        debugger;
         this.props.isFetching(true);
         this.props.setCurrentPage(page);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
@@ -36,8 +36,11 @@ class UsersClass extends React.Component {
     
     render() {
         
-        
-        return <Users
+        return <div>
+
+            {(this.props.isAuthorized === false) ? <Redirect to="login"/> : null}
+
+        <Users
             isFetchingToggle={this.props.isFetchingToggle}
             totalCount={this.props.totalCount}
             users={this.props.users}
@@ -48,8 +51,8 @@ class UsersClass extends React.Component {
             setCurrentPage={this.setCurrentPage}
             unFollow={this.unFollow}
             follow={this.follow}
-
         />
+        </div>
     }
 }
 
@@ -61,7 +64,8 @@ const mapStateToProps = (state) => {
         pageSize: state.users.pageSize,
         currentPage: state.users.currentPage,
         paginationSize: state.users.paginationSize,
-        isFetchingToggle: state.users.isFetchingToggle
+        isFetchingToggle: state.users.isFetchingToggle,
+        isAuthorized: state.auth.isAuthorized
     }
 }
 
