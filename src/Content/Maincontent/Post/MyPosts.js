@@ -5,7 +5,6 @@ import Preloader from "../../Preloader/Preloader";
 import { NavLink } from "react-router-dom";
 
 const MyPosts = (props) => {
-    debugger
 
     let postArr = props.postData.map(p => 
         <Post
@@ -13,6 +12,7 @@ const MyPosts = (props) => {
         key={p.postid}
         ind={p.postid}
         title={p.title}
+        body={p.body}
 
     />
     )

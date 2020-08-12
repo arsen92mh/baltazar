@@ -1,7 +1,7 @@
 
 
 let initialState= {
-    isAuthorized: false
+    isAuthorized: true
 };
 
 export const authReducer = (state = initialState, action) => {

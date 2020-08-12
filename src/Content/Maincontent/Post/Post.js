@@ -22,7 +22,8 @@ const Post = (props) => {
 
                 <div>
                     <div className={style.question}>{props.title}</div>
-                    <div className={style.answer}>{props.postData.answer}</div>
+                    <hr></hr>
+                    <div className={style.answer}>{props.body}</div>
                     <div className={style.postAuthor}> {props.postData.postAuthor} </div>
                     <div className={style.postTime}>{props.postData.postTime}</div>
                     <div className={style.postDate}>{props.postData.postDate}</div>
